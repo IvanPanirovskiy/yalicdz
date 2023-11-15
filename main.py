@@ -1,32 +1,15 @@
 import sys
 
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
 from PyQt5 import QtCore, QtWidgets
 import random
+from PyQt5 import uic
 
-
-class Ui_Form(object):
-    def setupUi(self, Form):
-        Form.setObjectName("Form")
-        Form.resize(1264, 953)
-        self.pushButton = QtWidgets.QPushButton(Form)
-        self.pushButton.setGeometry(QtCore.QRect(380, 820, 361, 81))
-        self.pushButton.setObjectName("pushButton")
-
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
-
-    def retranslateUi(self, Form):
-        _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
-        self.pushButton.setText(_translate("Form", "Рисовать"))
-
-
-class Example(QMainWindow, Ui_Form):
+class Example(QMainWindow, QWidget):
     def __init__(self):
         super().__init__()
-        self.setupUi(self)
+        uic.loadUi('ui.ui', self)
         self.initUI()
 
     def initUI(self):
@@ -51,13 +34,10 @@ class Example(QMainWindow, Ui_Form):
         b = random.randint(30, 900)
         c = random.randint(30, 900)
         d = random.randint(30, 900)
-        qp.setBrush(QColor(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
+        qp.setBrush(QColor(255, 255, 0))
         qp.drawEllipse(500, 30, a, a)
-        qp.setBrush(QColor(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
         qp.drawEllipse(30, 500, b, b)
-        qp.setBrush(QColor(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
         qp.drawEllipse(500, 500, c, c)
-        qp.setBrush(QColor(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
         qp.drawEllipse(30, 30, d, d)
 
 
